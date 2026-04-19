@@ -92,6 +92,22 @@ class DataSalle:
 
             return salle
 
+    def get_salles(self):
+        connection = self.get_connection()
+        liste_salles = []
+        if connection:
+            try:
+                cursor = connection.cursor(dictionary=True)
+                cursor.execute("SELECT * FROM salle")
+                liste_salles = cursor.fetchall()
+            except mysql.connector.Error as err:
+                print(f"Erreur lors de la récupération : {err}")
+            finally:
+                cursor.close()
+                connection.close()
+
+        return liste_salles
+
 
 
 
