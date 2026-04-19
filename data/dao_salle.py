@@ -73,7 +73,25 @@ class DataSalle:
                 cursor.close()
                 connection.close()
 
-                
+
+    def get_salle(self, code):
+        connection = self.get_connection()
+        salle = None
+        if connection:
+            try:
+                cursor = connection.cursor(dictionary=True)
+                cursor.execute(
+                    "SELECT * FROM salle WHERE code = %s", (code,)
+                )
+                salle = cursor.fetchone()
+            except mysql.connector.Error as err:
+                print(f"Erreur lors de la recherche : {err}")
+            finally:
+                cursor.close()
+                connection.close()
+                return salle
+
+
 
 
 
