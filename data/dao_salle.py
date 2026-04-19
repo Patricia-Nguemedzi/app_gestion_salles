@@ -89,7 +89,8 @@ class DataSalle:
             finally:
                 cursor.close()
                 connection.close()
-                return salle
+
+            return salle
 
 
 
