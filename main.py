@@ -1,7 +1,7 @@
 from models.salle import Salle
 from data.dao_salle import DataSalle
 
-def test_dao():
+'''def test_dao():
     dao = DataSalle()
 
     print("premier test:  connexion à la base de données ")
@@ -13,5 +13,14 @@ def test_dao():
     else:
         print("echec de la connexion à la bae de donnée")
 
-        return
+        return'''
+
+def test_dao():
+    dao = DataSalle()
+    print("deuxième test: Ajout d'une salle à la base de donnée.")
+    ma_salle = Salle("C250", "lab informatique", "programmation", 35)
+    dao.insert_salle(ma_salle)
+
+
+
 
