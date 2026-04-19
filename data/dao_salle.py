@@ -39,6 +39,26 @@ class DataSalle:
                 cursor.close()
                 connection.close()
 
+    def update_salle(self, salle):
+        connection = self.get_connection()
+        if connection:
+            try:
+                cursor = connection.cursor()
+                cursor.execute(
+                    "UPDATE salle SET description = %s, categorie = %s, capacite = %s where code = %s",
+                    (salle.description, salle.categorie, salle.capacite, salle.code)
+                )
+                connection.commit()
+                print(f"la salle {salle.code} a été mis à jour avec succès ")
+            except mysql.connector.Error as err:
+                print(f"Erreur lors de la mise à jour de la salle : {err}")
+            finally:
+                cursor.close()
+                connection.close()
+
+
+
+
 
 
 
