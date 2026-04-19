@@ -56,6 +56,28 @@ class DataSalle:
                 cursor.close()
                 connection.close()
 
+    def delete_salle(self, code):
+        connection = self.get_connection()
+        if connection:
+            try:
+                cursor = connection.cursor()
+                cursor.execute(
+                    "DELETE FROM salle WHERE code = %s", (code,)
+                )
+                connection.commit()
+                print(f"la salle avec le code : {code} a été supprimé.")
+
+            except mysql.connector.Error as err:
+                print(f"Erreur lors de la suppression : {err}")
+            finally:
+                cursor.close()
+                connection.close()
+
+                
+
+
+
+
 
 
 
