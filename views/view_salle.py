@@ -53,6 +53,28 @@ class ViewSalle(ctk.CTk):
         self.tree.heading("cap", text="Capacité")
         self.tree.pack(pady=20, padx=20, fill="both", expand=True)
 
+        # Cadre Liste des salles
+        self.cadreList = ctk.CTkFrame(self, corner_radius=10)
+        self.cadreList.pack(pady=10, padx=10, fill="both", expand=True)
+
+        # Création du Treeview avec les bonnes colonnes
+        self.treeList = ttk.Treeview(self.cadreList, columns=("code", "description", "categorie", "capacite"),
+                                     show="headings")
+
+        # En-têtes visibles
+        self.treeList.heading("code", text="CODE")
+        self.treeList.heading("description", text="Description")
+        self.treeList.heading("categorie", text="Catégorie")
+        self.treeList.heading("capacite", text="Capacité")
+
+        # Configuration de la largeur des colonnes
+        self.treeList.column("code", width=50)
+        self.treeList.column("description", width=150)
+        self.treeList.column("categorie", width=100)
+        self.treeList.column("capacite", width=100)
+
+        self.treeList.pack(expand=True, fill="both", padx=10, pady=10)
+
     def action_ajouter(self):
         s = Salle(self.entry_code.get(), self.entry_desc.get(),
                   self.entry_cat.get(), int(self.entry_cap.get()))
