@@ -22,3 +22,7 @@ class ServiceSalle:
 
         self.dao_salle.update_salle(salle)
         return True, "Modification réussie."
+
+    def supprimer_salle(self, code):
+        self.dao_salle.delete_salle(code)
+        return True, "Suppression réussie."
