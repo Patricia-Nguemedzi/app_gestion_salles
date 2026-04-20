@@ -52,3 +52,17 @@ class ViewSalle(ctk.CTk):
         self.tree.heading("cat", text="Catégorie")
         self.tree.heading("cap", text="Capacité")
         self.tree.pack(pady=20, padx=20, fill="both", expand=True)
+
+    def action_ajouter(self):
+        s = Salle(self.entry_code.get(), self.entry_desc.get(),
+                  self.entry_cat.get(), int(self.entry_cap.get()))
+        succes, msg = self.service_salle.ajouter_salle(s)
+        print(msg)
+        self.charger_donnees()
+
+    def charger_donnees(self):
+        for row in self.tree.get_children():
+            self.tree.delete(row)
+        salles = self.service_salle.recuperer_salles()
+        for s in salles:
+            self.tree.insert("", "end", values=(s.codes, s.descriptions, s.categorie, s.capacite))
