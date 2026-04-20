@@ -25,12 +25,12 @@ class DataSalle:
             try:
                 cursor = connection.cursor()
                 cursor.execute(
-                "INSERT INTO salle (code, description,categorie, capacite) values (%s, %s, %s, %s)",
-                (salle.code, salle.description, salle.categorie, salle.capacite)
+                "INSERT INTO salle (codes, descriptions,categorie, capacite) values (%s, %s, %s, %s)",
+                (salle.codes, salle.descriptions, salle.categorie, salle.capacite)
                 )
 
                 connection.commit()
-                print(f"La salle {salle.code} a été ajoutée avec succès.")
+                print(f"La salle {salle.codes} a été ajoutée avec succès.")
 
             except mysql.connector.Error as err:
                 print(f"Erreur lors de l'insertion : {err}")
@@ -45,27 +45,27 @@ class DataSalle:
             try:
                 cursor = connection.cursor()
                 cursor.execute(
-                    "UPDATE salle SET description = %s, categorie = %s, capacite = %s where code = %s",
-                    (salle.description, salle.categorie, salle.capacite, salle.code)
+                    "UPDATE salle SET descriptions = %s, categorie = %s, capacite = %s where codes = %s",
+                    (salle.descriptions, salle.categorie, salle.capacite, salle.codes)
                 )
                 connection.commit()
-                print(f"la salle {salle.code} a été mis à jour avec succès ")
+                print(f"la salle {salle.codes} a été mis à jour avec succès ")
             except mysql.connector.Error as err:
                 print(f"Erreur lors de la mise à jour de la salle : {err}")
             finally:
                 cursor.close()
                 connection.close()
 
-    def delete_salle(self, code):
+    def delete_salle(self, codes):
         connection = self.get_connection()
         if connection:
             try:
                 cursor = connection.cursor()
                 cursor.execute(
-                    "DELETE FROM salle WHERE code = %s", (code,)
+                    "DELETE FROM salle WHERE codes = %s", (codes,)
                 )
                 connection.commit()
-                print(f"la salle avec le code : {code} a été supprimé.")
+                print(f"la salle avec le code : {codes} a été supprimé.")
 
             except mysql.connector.Error as err:
                 print(f"Erreur lors de la suppression : {err}")
@@ -74,16 +74,18 @@ class DataSalle:
                 connection.close()
 
 
-    def get_salle(self, code):
+    def get_salle(self, codes):
         connection = self.get_connection()
         salle = None
         if connection:
             try:
                 cursor = connection.cursor(dictionary=True)
                 cursor.execute(
-                    "SELECT * FROM salle WHERE code = %s", (code,)
+                    "SELECT * FROM salle WHERE codes = %s", (codes,)
                 )
                 salle = cursor.fetchone()
+                while cursor.nextset():
+                    pass
             except mysql.connector.Error as err:
                 print(f"Erreur lors de la recherche : {err}")
             finally:
@@ -94,19 +96,19 @@ class DataSalle:
 
     def get_salles(self):
         connection = self.get_connection()
-        liste_salles = []
+        liste_salle = []
         if connection:
             try:
-                cursor = connection.cursor(dictionary=True)
+                cursor = connection.cursor(dictionary=True, buffered=True)
                 cursor.execute("SELECT * FROM salle")
-                liste_salles = cursor.fetchall()
+                liste_salle = cursor.fetchall()
             except mysql.connector.Error as err:
                 print(f"Erreur lors de la récupération : {err}")
             finally:
                 cursor.close()
                 connection.close()
 
-        return liste_salles
+        return liste_salle
 
 
 
