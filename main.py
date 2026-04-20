@@ -1,7 +1,7 @@
-'''from models.salle import Salle
+from models.salle import Salle
 from data.dao_salle import DataSalle
 
-def test_dao():
+'''def test_dao():
     dao = DataSalle()
 
     print("premier test:  connexion à la base de données ")
@@ -13,17 +13,27 @@ def test_dao():
     else:
         print("echec de la connexion à la bae de donnée")
 
-        return test_dao()
+        return test_dao()'''
 
 def test_dao():
     dao = DataSalle()
     print("deuxième test: Ajout d'une salle à la base de donnée.")
-    ma_salle = Salle("C250", "lab informatique", "programmation", 35)
-    ta_salle=Salle("B430", "salle d'activité", "Auditorium", 500)
-    dao.insert_salle(ma_salle)
-    dao.insert_salle(ta_salle)
+    S1 = Salle("C250", "lab informatique", "programmation", 35)
+    S2 = Salle("B430", "salle d'activité", "Auditorium", 500)
+    S3 = Salle("B201", "Salle de classe standard", "Amphithéâtre", 1000)
+    S4 = Salle("C102", "Salle de conférence", "Réunion", 12)
+    S5 = Salle("AM01", "salle des langues", "Anglais/Français", 260)
 
-def test_dao():
+    dao.insert_salle(S1)
+    dao.insert_salle(S2)
+    dao.insert_salle(S3)
+    dao.insert_salle(S4)
+    dao.insert_salle(S5)
+
+if __name__ == "__main__":
+    test_dao()
+
+'''def test_dao():
     dao = DataSalle()
     print("troisième test: supression d'une salle à la base de donnée")
     dao.delete_salle("B430")
@@ -67,7 +77,7 @@ def test_afficher_tout():
         print("Empty: La base de données est vide.")
 
 if __name__ == "__main__":
-    test_afficher_tout()'''
+    test_afficher_tout()
 
 from models.salle import Salle
 from services.services_salle import ServiceSalle
@@ -83,11 +93,22 @@ def test_service():
     if not succes:
         print(f"Résultat attendu : {message}")
 
+def test_service():
+    service = ServiceSalle()
+    print("\n Test Service : Récupérer toutes les salles")
+    liste = service.recuperer_salles()
+    for s in liste:
+        print(f"Salle trouvée : {s.codes}")
+
 if __name__ == "__main__":
     test_service()
 
 
+from views.view_salle import ViewSalle
 
+if __name__ == "__main__":
+    app = ViewSalle()
+    app.mainloop()'''
 
 
 
