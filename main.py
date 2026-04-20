@@ -32,6 +32,7 @@ def test_dao():
     print("troisième test: supression d'une salle à la base de donnée")
     dao.delete_salle("B430")
 
+
 if __name__ == "__main__":
     test_dao()
 
