@@ -32,3 +32,7 @@ class ServiceSalle:
         if res:
             return Salle(res['codes'], res['descriptions'], res['categorie'], res['capacite'])
         return None
+
+    def recuperer_salles(self):
+        liste_dicts = self.dao_salle.get_salles()
+        return [Salle(s['codes'], s['descriptions'], s['categorie'], s['capacite']) for s in liste_dicts]
