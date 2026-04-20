@@ -51,7 +51,7 @@ def test_recherche():
         print(f"Description : {resultat['descriptions']}")
         print(f"Capacité : {resultat['capacite']}")
     else:
-        print(f"Aucune salle ne porte le code : {code}")
+        print(f"Aucune salle ne porte le code : {code_cherche}")
 
 
 
