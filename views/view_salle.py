@@ -6,7 +6,7 @@ from models.salle import Salle
 class ViewSalle(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Gestion des Salles - STEF & JD COLLECTION Style")
+        self.title("Gestion des Salles - STEF & JD COLlection")
         self.geometry("900x650")
         self.service_salle = ServiceSalle()
         self.setup_ui()
@@ -46,18 +46,10 @@ class ViewSalle(ctk.CTk):
         self.btn_delete = ctk.CTkButton(self.frame_btns, text="Supprimer", fg_color="red", command=self.action_supprimer)
         self.btn_delete.pack(side="left", padx=10, pady=10)
 
-        self.tree = ttk.Treeview(self, columns=("code", "desc", "cat", "cap"), show="headings")
-        self.tree.heading("code", text="Code")
-        self.tree.heading("desc", text="Description")
-        self.tree.heading("cat", text="Catégorie")
-        self.tree.heading("cap", text="Capacité")
-        self.tree.pack(pady=20, padx=20, fill="both", expand=True)
-
         # Cadre Liste des salles
-        self.cadreList = ctk.CTkFrame(self, corner_radius=10)
+        self.cadreList = ctk.CTkFrame(self, corner_radius=10, width=400)
         self.cadreList.pack(pady=10, padx=10, fill="both", expand=True)
 
-        # Création du Treeview avec les bonnes colonnes
         self.treeList = ttk.Treeview(self.cadreList, columns=("code", "description", "categorie", "capacite"),
                                      show="headings")
 
