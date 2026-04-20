@@ -79,6 +79,18 @@ class ViewSalle(ctk.CTk):
         else:
             print(f"Erreur : {msg}")
 
+    def action_supprimer(self):
+        selection = self.tree.selection()
+        if selection:
+            item = self.tree.item(selection)
+            code = item['values'][0]
+
+            self.service_salle.supprimer_salle(code)
+            self.charger_donnees()
+            print(f"La salle {code} a été supprimée.")
+        else:
+            print("Erreur : Veuillez sélectionner une salle dans le tableau.")
+
     def charger_donnees(self):
         for row in self.tree.get_children():
             self.tree.delete(row)
