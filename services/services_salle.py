@@ -15,3 +15,10 @@ class ServiceSalle:
 
         self.dao_salle.insert_salle(salle)
         return True, f"La salle {salle.codes} a été ajoutée avec succès."
+
+    def modifier_salle(self, salle):
+        if not salle.codes or salle.capacite < 1:
+            return False, "Données invalides pour la modification."
+
+        self.dao_salle.update_salle(salle)
+        return True, "Modification réussie."
