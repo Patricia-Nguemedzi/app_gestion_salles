@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from services.services_salle import ServiceSalle
+from tkinter import ttk
 from models.salle import Salle
 
 class ViewSalle(ctk.CTk):
@@ -44,3 +45,10 @@ class ViewSalle(ctk.CTk):
 
         self.btn_delete = ctk.CTkButton(self.frame_btns, text="Supprimer", fg_color="red", command=self.action_supprimer)
         self.btn_delete.pack(side="left", padx=10, pady=10)
+
+        self.tree = ttk.Treeview(self, columns=("code", "desc", "cat", "cap"), show="headings")
+        self.tree.heading("code", text="Code")
+        self.tree.heading("desc", text="Description")
+        self.tree.heading("cat", text="Catégorie")
+        self.tree.heading("cap", text="Capacité")
+        self.tree.pack(pady=20, padx=20, fill="both", expand=True)
