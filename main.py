@@ -39,7 +39,7 @@ from data.dao_salle import DataSalle
     salle_a_modifier= Salle("C250", "lab réseautique", "Network", 43)
     dao.update_salle(salle_a_modifier)'''
 
-def test_recherche():
+'''def test_recherche():
     dao = DataSalle()
     print("cinquième test: recherche d'une classe par son code")
     code_cherche="C250"
@@ -51,13 +51,30 @@ def test_recherche():
         print(f"Description : {resultat['descriptions']}")
         print(f"Capacité : {resultat['capacite']}")
     else:
-        print(f"Aucune salle ne porte le code : {code_cherche}")
+        print(f"Aucune salle ne porte le code : {code_cherche}")'''
 
 
+def test_afficher_tout():
+    dao = DataSalle()
+
+    print("Sixième test : Récupération de toutes les salles")
+
+    toutes_les_salles = dao.get_salles()
+
+    if toutes_les_salles:
+        print(f"{len(toutes_les_salles)} salle(s) trouvée(s) dans la base :\n")
+
+        for salle in toutes_les_salles:
+            print(f"Code: {salle['codes']}, Description: {salle['descriptions']}, "
+                  f"Catégorie: {salle['categorie']}, Capacité: {salle['capacite']}")
+    else:
+        print("Empty: La base de données est vide.")
 
 
 if __name__ == "__main__":
-    test_recherche()
+    test_afficher_tout()
+
+
 
 
 
