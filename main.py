@@ -32,18 +32,32 @@ from data.dao_salle import DataSalle
     print("troisième test: supression d'une salle à la base de donnée")
     dao.delete_salle("B430")'''
 
-def test_modification():
+'''def test_modification():
     dao = DataSalle()
 
     print("quatrième test: Modification d'une salle  à la base de donnée")
     salle_a_modifier= Salle("C250", "lab réseautique", "Network", 43)
-    dao.update_salle(salle_a_modifier)
-    '''salle_verifiee = dao.get_salle("C250")
-    print(f"Vérification des nouvelles données : {salle_verifiee}")'''
+    dao.update_salle(salle_a_modifier)'''
+
+def test_recherche():
+    dao = DataSalle()
+    print("cinquième test: recherche d'une classe par son code")
+    code_cherche="C250"
+    resultat=dao.get_salle(code_cherche)
+
+    if resultat:
+        print(f"Salle trouvée en base de données :")
+        print(f"Code : {resultat['codes']}")
+        print(f"Description : {resultat['descriptions']}")
+        print(f"Capacité : {resultat['capacite']}")
+    else:
+        print(f"Aucune salle ne porte le code : {code}")
+
+
 
 
 if __name__ == "__main__":
-    test_modification()
+    test_recherche()
 
 
 
