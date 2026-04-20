@@ -1,7 +1,7 @@
-from models.salle import Salle
+'''from models.salle import Salle
 from data.dao_salle import DataSalle
 
-'''def test_dao():
+def test_dao():
     dao = DataSalle()
 
     print("premier test:  connexion à la base de données ")
@@ -13,33 +13,29 @@ from data.dao_salle import DataSalle
     else:
         print("echec de la connexion à la bae de donnée")
 
-        return test_dao()'''
+        return test_dao()
 
-
-
-'''def test_dao():
+def test_dao():
     dao = DataSalle()
     print("deuxième test: Ajout d'une salle à la base de donnée.")
     ma_salle = Salle("C250", "lab informatique", "programmation", 35)
     ta_salle=Salle("B430", "salle d'activité", "Auditorium", 500)
     dao.insert_salle(ma_salle)
-    dao.insert_salle(ta_salle)'''
+    dao.insert_salle(ta_salle)
 
-
-
-'''def test_dao():
+def test_dao():
     dao = DataSalle()
     print("troisième test: supression d'une salle à la base de donnée")
-    dao.delete_salle("B430")'''
+    dao.delete_salle("B430")
 
-'''def test_modification():
+def test_modification():
     dao = DataSalle()
 
     print("quatrième test: Modification d'une salle  à la base de donnée")
     salle_a_modifier= Salle("C250", "lab réseautique", "Network", 43)
-    dao.update_salle(salle_a_modifier)'''
+    dao.update_salle(salle_a_modifier)
 
-'''def test_recherche():
+def test_recherche():
     dao = DataSalle()
     print("cinquième test: recherche d'une classe par son code")
     code_cherche="C250"
@@ -51,7 +47,7 @@ from data.dao_salle import DataSalle
         print(f"Description : {resultat['descriptions']}")
         print(f"Capacité : {resultat['capacite']}")
     else:
-        print(f"Aucune salle ne porte le code : {code_cherche}")'''
+        print(f"Aucune salle ne porte le code : {code_cherche}")
 
 
 def test_afficher_tout():
@@ -70,11 +66,25 @@ def test_afficher_tout():
     else:
         print("Empty: La base de données est vide.")
 
+if __name__ == "__main__":
+    test_afficher_tout()'''
+
+from models.salle import Salle
+from services.services_salle import ServiceSalle
+
+
+def test_service():
+    service = ServiceSalle()
+
+    print("Test Service : Ajouter une salle invalide (Capacité 0)")
+    salle_nulle = Salle("TEST", "Nulle", "Inconnu", 0)
+    succes, message = service.ajouter_salle(salle_nulle)
+
+    if not succes:
+        print(f"Résultat attendu : {message}")
 
 if __name__ == "__main__":
-    test_afficher_tout()
-
-
+    test_service()
 
 
 
