@@ -60,6 +60,25 @@ class ViewSalle(ctk.CTk):
         print(msg)
         self.charger_donnees()
 
+    def action_modifier(self):
+        code = self.entry_code.get()
+        desc = self.entry_desc.get()
+        cat = self.entry_cat.get()
+        try:
+            cap = int(self.entry_cap.get())
+        except ValueError:
+            cap = 0
+
+        salle_modifiee = Salle(code, desc, cat, cap)
+
+        succes, msg = self.service_salle.modifier_salle(salle_modifiee)
+
+        if succes:
+            print(f"Succès : {msg}")
+            self.charger_donnees()  # On rafraîchit le tableau
+        else:
+            print(f"Erreur : {msg}")
+
     def charger_donnees(self):
         for row in self.tree.get_children():
             self.tree.delete(row)
