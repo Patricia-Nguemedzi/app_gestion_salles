@@ -13,7 +13,7 @@ from data.dao_salle import DataSalle
     else:
         print("echec de la connexion à la bae de donnée")
 
-        return test_dao()'''
+        return test_dao()
 
 def test_dao():
     dao = DataSalle()
@@ -33,7 +33,7 @@ def test_dao():
 if __name__ == "__main__":
     test_dao()
 
-'''def test_dao():
+def test_dao():
     dao = DataSalle()
     print("troisième test: supression d'une salle à la base de donnée")
     dao.delete_salle("B430")
@@ -101,14 +101,14 @@ def test_service():
         print(f"Salle trouvée : {s.codes}")
 
 if __name__ == "__main__":
-    test_service()
+    test_service()'''
 
 
 from views.view_salle import ViewSalle
 
 if __name__ == "__main__":
     app = ViewSalle()
-    app.mainloop()'''
+    app.mainloop()
 
 
 

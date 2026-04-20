@@ -1,3 +1,4 @@
+
 import mysql.connector
 import json
 
@@ -109,15 +110,3 @@ class DataSalle:
                 connection.close()
 
         return liste_salle
-
-
-
-
-
-
-
-
-
-
-
-

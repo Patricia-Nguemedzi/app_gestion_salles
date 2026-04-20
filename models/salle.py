@@ -14,6 +14,3 @@ class Salle:
         print(f"categorie   : {self.categorie}")
         print(f"capacite    : {self.capacite} personnes.")
         print("-" * 50)
-
-
-

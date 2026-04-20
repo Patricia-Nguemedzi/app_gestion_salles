@@ -135,12 +135,19 @@ class ViewSalle(ctk.CTk):
         selection = self.treeList.selection()
         if selection:
             item = self.treeList.item(selection)
-            v = item['values']
-            self.entry_code.delete(0, 'end')
-            self.entry_code.insert(0, v[0])
-            self.entry_desc.delete(0, 'end')
-            self.entry_desc.insert(0, v[1])
-            self.entry_cat.delete(0, 'end')
-            self.entry_cat.insert(0, v[2])
-            self.entry_cap.delete(0, 'end')
-            self.entry_cap.insert(0, v[3])
+            v = item.get('values', [])  # .get() évite un plantage si 'values' manque
+
+            # On vérifie qu'on a bien nos 4 colonnes avant de remplir
+            if len(v) >= 4:
+
+                self.entry_code.delete(0, 'end')
+                self.entry_code.insert(0, v[0])
+
+                self.entry_desc.delete(0, 'end')
+                self.entry_desc.insert(0, v[1])
+
+                self.entry_cat.delete(0, 'end')
+                self.entry_cat.insert(0, v[2])
+
+                self.entry_cap.delete(0, 'end')
+                self.entry_cap.insert(0, v[3])
